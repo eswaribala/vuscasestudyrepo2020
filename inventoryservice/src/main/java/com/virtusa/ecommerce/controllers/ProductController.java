@@ -40,6 +40,21 @@ public class ProductController {
 	    		 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Not Added");
 	    	
 	    }
+	 
+	 @PostMapping({"/v2.0"})
+
+	    @CrossOrigin("*")
+	    public ResponseEntity<?> addV2Product(@RequestBody Product product)
+	    {
+	    	
+	    	Product productObj=productService.addProduct(product);
+	    	if(productObj!=null)
+	    	
+	    	  return ResponseEntity.status(HttpStatus.ACCEPTED).body(productObj);
+	    	else
+	    		 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Not Added");
+	    	
+	    }
 	    
 	 @GetMapping({"/v1.0", "/v1.1"})
 
