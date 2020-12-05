@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.virtusa.ecommerce.models.Location;
+import com.virtusa.ecommerce.models.Product;
 import com.virtusa.ecommerce.repository.LocationRepository;
 
 
@@ -32,5 +33,13 @@ public class LocationService {
 			return  locationRepo.findAll();
 			
 		}
+		
+		//select
+				public Location getLocationById(long locationId)
+				{
+					 
+					return  locationRepo.findById(locationId).orElse(null);
+					
+				}
 		
 }

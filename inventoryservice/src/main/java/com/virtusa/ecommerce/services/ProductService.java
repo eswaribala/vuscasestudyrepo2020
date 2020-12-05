@@ -30,6 +30,12 @@ public class ProductService {
 			return  productRepo.findAll();
 			
 		}
-		
+		//select
+		public Product getProductById(long productId)
+		{
+			 
+			return  productRepo.findById(productId).orElse(null);
+			
+		}
 	
 }
