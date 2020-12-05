@@ -16,6 +16,8 @@ import javax.persistence.ForeignKey;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Entity
@@ -35,8 +37,10 @@ public class Stock {
 	private long qty;
 	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
 	@JoinColumn(foreignKey = @ForeignKey(name = "Product_Id"), name = "Product_Id")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Product product;
 	@ManyToOne(cascade = CascadeType.MERGE,fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	@JoinColumn(foreignKey = @ForeignKey(name = "Location_Id"), name = "Location_Id")
 	private Location location;
 	

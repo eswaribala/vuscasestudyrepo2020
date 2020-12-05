@@ -20,14 +20,14 @@ public class StockPublisher {
 	{
 		this.inventoryStreams=inventoryStreams;
 	}
-	public boolean sendStockDetails()
+	public boolean sendStockDetails(long productId)
 	{
 		//JPA code
 		//skeleton
 		//Notification
 		MessageChannel messageChannel = inventoryStreams.outboundInventory();
 	       return  messageChannel.send(MessageBuilder
-	                .withPayload(stockService.getAllStocksAboveBufferLevel())
+	                .withPayload(stockService.getAllStocksAboveBufferLevel(productId))
 	                .setHeader(MessageHeaders.CONTENT_TYPE, MimeTypeUtils.APPLICATION_JSON)
 	                .build());
 

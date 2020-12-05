@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.virtusa.ecommerce.models.Location;
 import com.virtusa.ecommerce.models.Stock;
 import com.virtusa.ecommerce.services.LocationService;
+import com.virtusa.ecommerce.services.StockPublisher;
 import com.virtusa.ecommerce.services.StockService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,6 +29,8 @@ public class StockController {
 
 	@Autowired
 	private StockService stockService;
+	@Autowired
+	private StockPublisher stockPublisher;
     
  @PostMapping({"/v1.0/{productId}/{locationId}", "/v1.1/{productId}/{locationId}"})
 
@@ -58,4 +61,15 @@ public class StockController {
     		return stockService.getAllStocks();
     	
     }
+ 
+ @GetMapping({"/v1.0/publish/{productId}", "/v1.1/publish/{productId}"})
+ public ResponseEntity<?> publishStock(@PathVariable("productId") long productId)
+ {
+	
+		if(this.stockPublisher.sendStockDetails(productId))
+			return ResponseEntity.ok("Stock Published");
+		else
+	    	return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body("Stock Not Available");
+
+ }
 }

@@ -48,13 +48,24 @@ public class StockService {
     
 	
 	
-	public List<Stock> getAllStocksAboveBufferLevel()
+	public String getAllStocksAboveBufferLevel(long productId)
     {
-    	
-    	
-    	return stockRepository.findAll().stream().filter(stock->stock.getQty()> 
-    	productService.getProductById(stock.getProduct().getProductId())
-    	.getBufferLevel()).collect(Collectors.toList());
+    	int sum=0;
+		for(Stock stock:stockRepository.getAllStockByProductId(productId))
+		{
+			sum+=stock.getQty();
+		}
+		
+		String message="Not Available";
+		if(sum>productService.getProductById(productId).getBufferLevel())
+		   message="Available";
+		//stockRepository.getAllStockByProductId(productId).stream().
+		/*
+		 * return stockRepository.findAll().stream().filter(stock->stock.getQty()>
+		 * productService.getProductById(stock.getProduct().getProductId())
+		 * .getBufferLevel()).collect(Collectors.toList());
+		 */
+		return message;
     }
     
     
