@@ -94,10 +94,20 @@
 			<artifactId>spring-cloud-config-client</artifactId>
 		</dependency>
 	<!-- Cloud Bus -->	
-		<dependency>
+		<!-- <dependency>
 	     <groupId>org.springframework.cloud</groupId>
 	     <artifactId>spring-cloud-starter-bus-amqp</artifactId>
-        </dependency>
+        </dependency> -->
+        
+       <!--  <dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-config-monitor</artifactId>
+		</dependency>
+ -->
+		<dependency>
+		    <groupId>org.springframework.cloud</groupId>
+		    <artifactId>spring-cloud-starter-bus-kafka</artifactId>
+		</dependency>
 		<!-- Vault API -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
